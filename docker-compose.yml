@@ -1,0 +1,20 @@
+services:
+  nginx:
+    container_name: nginx
+    restart: unless-stopped
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx:/etc/nginx/templates
+      - ./ssl:/ssl
+
+  backend:
+    container_name: backend
+    restart: unless-stopped
+    build: ./backend
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./backend:/app
