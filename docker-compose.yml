@@ -18,3 +18,10 @@ services:
       - PYTHONUNBUFFERED=1
     volumes:
       - ./backend:/app
+
+  frontend:
+    container_name: frontend
+    restart: unless-stopped
+    build: ./frontend
+    volumes:
+      - ./frontend/app:/app
